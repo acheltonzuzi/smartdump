@@ -169,4 +169,4 @@ MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-Made with ❤️ by [achelton](https://github.com/achelton)
+Made with ❤️ by [achelton pambo](https://github.com/acheltonzuzi)
