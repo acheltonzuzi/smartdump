@@ -138,7 +138,7 @@ smartdump/
 
 Contributions are welcome! This is an open source project.
 
-1. Fork the repository: [https://github.com/achelton/smartdump](https://github.com/achelton/smartdump)
+1. Fork the repository: [https://github.com/acheltonzuzi/smartdump](https://github.com/acheltonzuzi/smartdump)
 2. Create a feature branch: `git checkout -b feature/my-feature`
 3. Make your changes and commit: `git commit -am 'Add new feature'`
 4. Push to the branch: `git push origin feature/my-feature`
@@ -147,7 +147,7 @@ Contributions are welcome! This is an open source project.
 ### Development setup
 
 ```bash
-git clone https://github.com/achelton/smartdump.git
+git clone https://github.com/acheltonzuzi/smartdump.git
 cd smartdump
 pip install -e ".[dev]"
 pytest
@@ -164,8 +164,8 @@ MIT License - see the [LICENSE](LICENSE) file for details.
 ## Links
 
 - **PyPI**: [https://pypi.org/project/smartdump/](https://pypi.org/project/smartdump/)
-- **GitHub**: [https://github.com/acheltonzuzi/smartdump](https://github.com/achelton/smartdump)
-- **Issues**: [https://github.com/acheltonzuzi/smartdump/issues](https://github.com/achelton/smartdump/issues)
+- **GitHub**: [https://github.com/acheltonzuzi/smartdump](https://github.com/acheltonzuzi/smartdump)
+- **Issues**: [https://github.com/acheltonzuzi/smartdump/issues](https://github.com/acheltonzuzi/smartdump/issues)
 
 ---
 

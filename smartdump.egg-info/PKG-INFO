@@ -1,11 +1,18 @@
 Metadata-Version: 2.4
 Name: smartdump
-Version: 0.1.3
+Version: 0.1.5
 Summary: Real-time variable dumper for FastAPI — inspired by Laradumps
+Author-email: Achelton Pambo <acheltonzuzi@gmail.com>
+Maintainer-email: Achelton Pambo <acheltonzuzi@gmail.com>
 License: MIT
+Project-URL: Homepage, https://github.com/achelton/smartdump
+Project-URL: Repository, https://github.com/achelton/smartdump
+Project-URL: Issues, https://github.com/achelton/smartdump/issues
+Project-URL: Documentation, https://github.com/achelton/smartdump#readme
 Keywords: fastapi,debug,dump,developer-tools
 Requires-Python: >=3.10
 Description-Content-Type: text/markdown
+License-File: LICENSE
 Requires-Dist: fastapi>=0.110.0
 Requires-Dist: uvicorn[standard]>=0.29.0
 Requires-Dist: requests>=2.31.0
@@ -13,8 +20,13 @@ Provides-Extra: dev
 Requires-Dist: httpx>=0.27.0; extra == "dev"
 Requires-Dist: pytest>=8.0.0; extra == "dev"
 Requires-Dist: pytest-asyncio>=0.23.0; extra == "dev"
+Dynamic: license-file
 
 # SmartDump
+
+[![PyPI version](https://badge.fury.io/py/smartdump.svg)](https://badge.fury.io/py/smartdump)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 
 Real-time variable dump viewer for FastAPI — inspired by [Laradumps](https://laradumps.dev).
 
@@ -143,3 +155,42 @@ smartdump/
 ├── example/         # Demo FastAPI app
 └── run.py           # Server launcher (also registered as `smartdump` CLI)
 ```
+
+---
+
+## Contributing
+
+Contributions are welcome! This is an open source project.
+
+1. Fork the repository: [https://github.com/acheltonzuzi/smartdump](https://github.com/acheltonzuzi/smartdump)
+2. Create a feature branch: `git checkout -b feature/my-feature`
+3. Make your changes and commit: `git commit -am 'Add new feature'`
+4. Push to the branch: `git push origin feature/my-feature`
+5. Submit a pull request
+
+### Development setup
+
+```bash
+git clone https://github.com/acheltonzuzi/smartdump.git
+cd smartdump
+pip install -e ".[dev]"
+pytest
+```
+
+---
+
+## License
+
+MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## Links
+
+- **PyPI**: [https://pypi.org/project/smartdump/](https://pypi.org/project/smartdump/)
+- **GitHub**: [https://github.com/acheltonzuzi/smartdump](https://github.com/acheltonzuzi/smartdump)
+- **Issues**: [https://github.com/acheltonzuzi/smartdump/issues](https://github.com/acheltonzuzi/smartdump/issues)
+
+---
+
+Made with ❤️ by [achelton pambo](https://github.com/acheltonzuzi)
