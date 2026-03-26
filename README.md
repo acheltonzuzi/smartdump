@@ -164,8 +164,8 @@ MIT License - see the [LICENSE](LICENSE) file for details.
 ## Links
 
 - **PyPI**: [https://pypi.org/project/smartdump/](https://pypi.org/project/smartdump/)
-- **GitHub**: [https://github.com/achelton/smartdump](https://github.com/achelton/smartdump)
-- **Issues**: [https://github.com/achelton/smartdump/issues](https://github.com/achelton/smartdump/issues)
+- **GitHub**: [https://github.com/acheltonzuzi/smartdump](https://github.com/achelton/smartdump)
+- **Issues**: [https://github.com/acheltonzuzi/smartdump/issues](https://github.com/achelton/smartdump/issues)
 
 ---
 
