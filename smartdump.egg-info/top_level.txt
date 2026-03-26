@@ -1,0 +1,4 @@
+run
+server
+smartdump
+static

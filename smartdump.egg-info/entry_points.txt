@@ -1,0 +1,3 @@
+[console_scripts]
+smart-debugger = run:main
+smartdump = run:cli

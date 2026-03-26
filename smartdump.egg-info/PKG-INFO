@@ -1,0 +1,145 @@
+Metadata-Version: 2.4
+Name: smartdump
+Version: 0.1.3
+Summary: Real-time variable dumper for FastAPI — inspired by Laradumps
+License: MIT
+Keywords: fastapi,debug,dump,developer-tools
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi>=0.110.0
+Requires-Dist: uvicorn[standard]>=0.29.0
+Requires-Dist: requests>=2.31.0
+Provides-Extra: dev
+Requires-Dist: httpx>=0.27.0; extra == "dev"
+Requires-Dist: pytest>=8.0.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.23.0; extra == "dev"
+
+# SmartDump
+
+Real-time variable dump viewer for FastAPI — inspired by [Laradumps](https://laradumps.dev).
+
+Call `sd(variable)` anywhere in your FastAPI app and see it appear instantly in the browser.
+
+---
+
+## Installation
+
+```bash
+pip install smartdump
+```
+
+---
+
+## Quick start
+
+### 1. Start the debug server
+
+```bash
+smartdump start
+```
+
+Open **http://localhost:8765** in your browser.
+
+### 2. Use `sd()` in your FastAPI app
+
+```python
+from smartdump import sd
+
+@app.get("/users/{user_id}")
+async def get_user(user_id: int):
+    user = db.get_user(user_id)
+    sd(user, label="user from DB")   # dumps to the UI, non-blocking
+    return user
+```
+
+Every dump appears instantly in the browser with the file, line number, and function name.
+
+---
+
+## `sd()` reference
+
+```python
+sd(data, label=None, level="info")
+```
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `data`    | any  | —       | Any Python value to inspect |
+| `label`   | str  | `None`  | Human-readable name shown in the UI |
+| `level`   | str  | `"info"`| One of `info`, `debug`, `warning`, `error` |
+
+**Returns** `data` unchanged — safe to use inline:
+
+```python
+return sd(result, "final result")
+```
+
+### Configuration
+
+```python
+from client import configure
+
+configure(
+    server_url="http://localhost:8765",  # default
+    timeout=1.0,                         # seconds — kept short
+    enabled=True,                        # set False in production
+)
+```
+
+---
+
+## UI features
+
+- Real-time WebSocket feed
+- Collapsible JSON tree viewer (auto-collapses at depth 3)
+- Level badges: `info` / `debug` / `warning` / `error`
+- Filter by level and free-text search (label, file, value)
+- Sort newest / oldest
+- Copy-to-clipboard button
+- File + line number + function name for every dump
+- Dark mode by default
+
+---
+
+## How it works
+
+```
+FastAPI app          SmartDump server            Browser
+    │                        │                      │
+    │  sd(data)              │                      │
+    │─── POST /dump ────────>│                      │
+    │   (daemon thread)      │── WS broadcast ─────>│
+    │                        │                      │ (live update)
+    │  (request continues)   │                      │
+```
+
+1. `sd()` captures the caller's file/line/function via `inspect`.
+2. It serialises the value and fires a POST request on a **daemon thread** — completely non-blocking.
+3. The server stores the dump in a `deque(maxlen=200)` and broadcasts it to all connected WebSocket clients.
+4. The browser receives the payload and renders it as a collapsible JSON tree.
+
+If the server is not running, `sd()` silently does nothing — it never crashes your app.
+
+---
+
+## Disabling in production
+
+```python
+import os
+from client import configure
+
+configure(enabled=os.getenv("DEBUG", "false").lower() == "true")
+```
+
+---
+
+## Project structure
+
+```
+smartdump/
+├── client/          # Python client library — the sd() function
+├── server/          # FastAPI dump server (port 8765)
+├── static/          # Web UI (vanilla JS, no build step)
+├── example/         # Demo FastAPI app
+└── run.py           # Server launcher (also registered as `smartdump` CLI)
+```

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartDebugger</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="header-left">
+      <span class="logo">⚡ SmartDebugger</span>
+      <span class="tagline">for FastAPI</span>
+    </div>
+    <div class="header-right">
+      <span class="badge" id="ws-status" data-status="connecting">● connecting</span>
+      <span class="dump-count" id="dump-count">0 dumps</span>
+      <button class="btn btn-danger" id="btn-clear">Clear all</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+      <p class="sidebar-title">Filters</p>
+
+      <div class="filter-group">
+        <label class="filter-label">Level</label>
+        <div class="filter-pills" id="level-filters">
+          <button class="pill active" data-level="all">All</button>
+          <button class="pill" data-level="info">Info</button>
+          <button class="pill" data-level="debug">Debug</button>
+          <button class="pill" data-level="warning">Warning</button>
+          <button class="pill" data-level="error">Error</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label">Search</label>
+        <input
+          class="search-input"
+          id="search-input"
+          type="text"
+          placeholder="label, file, value…"
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label">Sort</label>
+        <div class="filter-pills">
+          <button class="pill active" id="sort-newest">Newest</button>
+          <button class="pill" id="sort-oldest">Oldest</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ===== MAIN ===== -->
+    <main class="main">
+      <div id="empty-state" class="empty-state">
+        <p class="empty-icon">🔭</p>
+        <p>Waiting for dumps…</p>
+        <p class="empty-sub">Call <code>sd(variable)</code> in your FastAPI app.</p>
+      </div>
+      <div id="dump-list"></div>
+    </main>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
